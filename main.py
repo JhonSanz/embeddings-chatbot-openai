@@ -2,12 +2,20 @@ import os
 from dotenv import load_dotenv
 from pdf_reader import LLMDocProccessor
 
+# def chat_roulette():
+#     user_input = ""
+#     proccessor = LLMDocProccessor(["rafael_pombo.pdf"])
+#     while user_input != "exit":
+#         user_input = input("your message (type 'exit' to close): ")
+#         answer = proccessor.generate_answer(user_input)
+#         print(answer)
+
 def chat_roulette():
     user_input = ""
-    proccessor = LLMDocProccessor(["rafael_pombo.pdf"])
+    conversation = LLMDocProccessor(["rafael_pombo.pdf"]).get_conversation_chain()
     while user_input != "exit":
         user_input = input("your message (type 'exit' to close): ")
-        answer = proccessor.generate_answer(user_input)
+        answer = conversation({"question": user_input})
         print(answer)
 
 def app():
