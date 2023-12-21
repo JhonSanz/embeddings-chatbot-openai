@@ -31,7 +31,7 @@ class LLMDocProccessor:
         try:
             embeddings = OpenAIEmbeddings()
             # SHOULD I LOAD IT FROM S3? ;)
-            vectorstore = FAISS.load_local("faiss_index", embeddings)
+            vectorstore = FAISS.load_local("renacuajo_paseador_faiss_index", embeddings)
             self.vectorstore = vectorstore
             return True
         except:

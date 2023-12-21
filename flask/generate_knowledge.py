@@ -3,6 +3,7 @@ from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
+from dotenv import load_dotenv
 
 
 class LLMDocProccessor:
@@ -31,6 +32,7 @@ class LLMDocProccessor:
         self.vectorstore = vectorstore
 
     def run(self):
+        load_dotenv()
         chunks = self.reader()
         self.create_embeddings(chunks)
 
