@@ -14,11 +14,13 @@ class LLMDocProccessor:
         self.start()
 
     def get_conversation_chain(self):
-        message_history = DynamoDBChatMessageHistory(
-            table_name="chatbot_memory_test", session_id="1"
-        )
+        # message_history = DynamoDBChatMessageHistory(
+        #     table_name="chatbot_memory_test", session_id="1"
+        # )
         memory = ConversationBufferMemory(
-            memory_key="chat_history", chat_memory=message_history, return_messages=True
+            memory_key="chat_history",
+            # chat_memory=message_history,
+            return_messages=True
         )
         conversation_chain = ConversationalRetrievalChain.from_llm(
             llm=self.llm, retriever=self.vectorstore.as_retriever(), memory=memory
