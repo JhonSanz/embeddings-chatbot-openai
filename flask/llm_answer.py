@@ -7,10 +7,11 @@ from langchain.memory.chat_message_histories import DynamoDBChatMessageHistory
 
 
 class LLMDocProccessor:
-    def __init__(self) -> None:
+    def __init__(self, knowledge: str) -> None:
         self.vectorstore = None
         self.llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
         self.ready = False
+        self.knowledge = knowledge
         self.start()
 
     def get_conversation_chain(self):
@@ -31,7 +32,7 @@ class LLMDocProccessor:
         try:
             embeddings = OpenAIEmbeddings()
             # SHOULD I LOAD IT FROM S3? ;)
-            vectorstore = FAISS.load_local("renacuajo_paseador_faiss_index", embeddings)
+            vectorstore = FAISS.load_local(self.knowledge, embeddings)
             self.vectorstore = vectorstore
             return True
         except:

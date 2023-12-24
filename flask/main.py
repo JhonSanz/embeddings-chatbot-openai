@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 load_dotenv()
-chatbot = LLMDocProccessor()
+chatbot = LLMDocProccessor("renacuajo_paseador_faiss_index")
 
 
 @app.route("/answer", methods=["POST"])

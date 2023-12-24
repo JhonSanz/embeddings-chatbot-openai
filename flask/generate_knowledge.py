@@ -20,9 +20,10 @@ class LLMDocProccessor:
                 text += page.extract_text()
 
             text_splitter = CharacterTextSplitter(
-                separator="\n", chunk_size=1000, chunk_overlap=20, length_function=len
+                separator="\n", chunk_size=500, chunk_overlap=20, length_function=len
             )
             chunks = text_splitter.split_text(text)
+            print(len(chunks))
             return chunks
 
     def create_embeddings(self, chunks):
